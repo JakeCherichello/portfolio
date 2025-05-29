@@ -39,13 +39,11 @@
     <div class="container" id="projectGalleryApp">
       <div class="galleryFilters mb-4">
         <button
-          v-for="cat in ['all', 'webDesign', 'appDevelopment', 'uiDesign']"
+          v-for="cat in ['all', 'webDesign', 'appDevelopment', 'uiDesign', 'animation']"
           :key="cat"
           :class="['btn', 'filterBtn', activeFilter === cat ? 'btn-primary active' : 'btn-outline-primary']"
           @click="filterProjects(cat)"
-        >
-          {{ cat === 'all' ? 'All' : cat.replace(/([A-Z])/g, ' $1') }}
-        </button>
+        >{{ cat.charAt(0).toUpperCase() + cat.slice(1) }}</button>
       </div>
       <div v-if="loading" class="text-center my-5">
         <span class="spinner-border text-primary"></span>
@@ -95,6 +93,55 @@
     </div>
   </footer>
 
-
+  <!-- Vue.js -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.min.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Portfolio Gallery Script -->
+  <script>
+    new Vue({
+      el: '#projectGalleryApp',
+      data: {
+        projects: [],
+        filteredProjects: [],
+        activeFilter: 'all',
+        loading: true
+      },
+      mounted() {
+        this.fetchProjects();
+      },
+      methods: {
+        fetchProjects() {
+          setTimeout(() => {
+            this.projects = [
+              { id: 1, title: 'Magic 8 Ball Website', image: 'img/8ball.png', category: 'appDevelopment', link: 'project-detail.html?id=1', tags: ['JavaScript', 'Fun'] },
+              { id: 2, title: 'Rock Paper Scissors Website', image: 'img/rps.png', category: 'appDevelopment', link: 'project-detail.html?id=2', tags: ['Game', 'JavaScript'] },
+              { id: 3, title: 'Trunk or Treat Website', image: 'img/trunk.png', category: 'webDesign', link: 'project-detail.html?id=3', tags: ['HTML', 'CSS'] },
+              { id: 4, title: 'Schedule Website', image: 'img/sched.png', category: 'appDevelopment', link: 'https://github.com/JakeCherichello/classes', tags: ['Vue', 'Productivity'] },
+              { id: 5, title: 'Little Bird Toy Company', image: 'img/lbtc.png', category: 'webDesign', link: 'https://matthewpass24.github.io/Final-Website/', tags: ['E-commerce', 'Design'] },
+              { id: 6, title: 'Santa Animation', image: 'img/santa.png', category: 'animation', link: 'https://jakecherichello.github.io/Christmas/', tags: ['Animation', 'Holiday'] },
+              { id: 7, title: 'Tip Calculator', image: 'img/tip.png', category: 'appDevelopment', link: 'https://github.com/JakeCherichello/tip-calculator', tags: ['Calculator', 'Vue'] },
+              { id: 8, title: 'Spider Animation', image: 'img/spider.png', category: 'animation', link: 'https://github.com/JakeCherichello/Animation2.html?id=8', tags: ['Animation', 'CSS'] },
+              { id: 9, title: 'Lottery App', image: 'img/lottery.png', category: 'appDevelopment', link: 'https://jakecherichello.github.io/Lottery/', tags: ['Random', 'JavaScript'] }
+            ];
+            this.filteredProjects = [...this.projects];
+            this.loading = false;
+          }, 800);
+        },
+        filterProjects(category) {
+          this.activeFilter = category;
+          this.loading = true;
+          setTimeout(() => {
+            if (category === 'all') {
+              this.filteredProjects = [...this.projects];
+            } else {
+              this.filteredProjects = this.projects.filter(p => p.category === category);
+            }
+            this.loading = false;
+          }, 400);
+        }
+      }
+    });
+  </script>
 </body>
 </html>
