@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Playfair Display Example</title>
+  <title>Jake Cherichello - Creative Portfolio</title>
 
-  <!-- Google Fonts: Playfair Display -->
+  <!-- Google Fonts: Playfair Display & Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -16,54 +16,100 @@
   <!-- Font Awesome -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
 
-  <!-- Custom CSS -->
+  <!-- Enhanced Custom CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Animated Background -->
+  <div class="floatingShapes">
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
+
   <!-- Hero Section -->
   <header class="heroSection d-flex align-items-center justify-content-center text-center position-relative">
-    <div class="container">
-      <h1 class="display-3 fw-bold mb-3">
-        Hi, I'm <span class="highlight">Jake Cherichello</span>
+    <div class="heroBgOverlay"></div>
+    <div class="container heroContent">
+      <div class="heroBadge mb-4">
+        <i class="fas fa-code"></i>
+        <span>Creative Developer</span>
+      </div>
+      <h1 class="heroTitle mb-4">
+        Hi, I'm <span class="nameHighlight">Jake Cherichello</span>
       </h1>
-      <p class="lead mb-4">Crafting beautiful web experiences with code &amp; creativity.</p>
-      <div class="heroButtons">
-        <a href="#projectGallery" class="btn btn-primary btn-lg me-2">View My Work</a>
-        <a href="contact.html" class="btn btn-outline-primary btn-lg">Let's Connect</a>
+      <p class="heroSubtitle mb-5">
+        Crafting beautiful web experiences with code &amp; creativity.<br>
+        <span class="typingText">Bringing ideas to life through innovative design.</span>
+      </p>
+    </div>
+    
+    <!-- Floating elements -->
+    <div class="floatingElements">
+      <div class="floatElement" style="top: 20%; left: 10%;">
+        <i class="fab fa-html5"></i>
+      </div>
+      <div class="floatElement" style="top: 30%; right: 15%;">
+        <i class="fab fa-css3-alt"></i>
+      </div>
+      <div class="floatElement" style="bottom: 30%; left: 20%;">
+        <i class="fab fa-js-square"></i>
+      </div>
+      <div class="floatElement" style="bottom: 20%; right: 10%;">
+        <i class="fab fa-vue"></i>
       </div>
     </div>
   </header>
 
   <!-- Portfolio Gallery Section -->
-  <section id="projectGallery" class="sectionPadding py-5" style="background: #f1f3f5;">
+  <section id="projectGallery" class="portfolioSection py-5">
     <div class="container" id="projectGalleryApp">
-      <div class="galleryFilters mb-4">
+      <div class="sectionHeader text-center mb-5">
+        <div class="sectionBadge">
+          <i class="fas fa-palette"></i>
+          <span>Portfolio</span>
+        </div>
+        <h2 class="sectionTitle">My Creative Work</h2>
+        <p class="sectionSubtitle">Exploring the intersection of design and functionality</p>
+      </div>
+      
+      <div class="galleryFilters mb-5">
         <button
           v-for="cat in ['all', 'webDesign', 'appDevelopment', 'uiDesign', 'animation']"
           :key="cat"
-          :class="['btn', 'filterBtn', activeFilter === cat ? 'btn-primary active' : 'btn-outline-primary']"
+          :class="['btn', 'filterBtn', activeFilter === cat ? 'btnPrimary active' : 'btnOutlinePrimary']"
           @click="filterProjects(cat)"
         >{{ cat.charAt(0).toUpperCase() + cat.slice(1) }}</button>
       </div>
+      
       <div v-if="loading" class="text-center my-5">
-        <span class="spinner-border text-primary"></span>
+        <div class="loadingSpinner">
+          <div class="spinner"></div>
+          <p class="mt-3">Loading amazing projects...</p>
+        </div>
       </div>
+      
       <div v-else class="row">
-        <div class="col-md-4 mb-4" v-for="project in filteredProjects" :key="project.id">
+        <div class="col-lg-4 col-md-6 mb-4" v-for="project in filteredProjects" :key="project.id">
           <div class="galleryCard position-relative" tabindex="0">
             <div class="galleryImg position-relative">
-              <img :src="project.image" :alt="project.title" class="img-fluid rounded" />
-              <div class="galleryOverlay d-flex flex-column align-items-center justify-content-center position-absolute w-100 h-100 top-0 start-0 rounded">
-                <a :href="project.link" class="btn btn-primary mb-2">
-                  <i class="fas fa-eye"></i> View Details
+              <img :src="project.image" :alt="project.title" class="img-fluid" />
+              <div class="galleryOverlay d-flex flex-column align-items-center justify-content-center position-absolute w-100 h-100 top-0 start-0">
+                <a :href="project.link" class="btn btnGlass mb-3">
+                  <i class="fas fa-eye me-2"></i>View Project
                 </a>
-                <span class="galleryTags">
+                <div class="galleryTags">
                   <span class="galleryTag" v-for="tag in project.tags" :key="tag">{{ tag }}</span>
-                </span>
+                </div>
               </div>
             </div>
             <div class="galleryBody">
-              <div class="galleryTitle">{{ project.title }}</div>
+              <h3 class="galleryTitle">{{ project.title }}</h3>
+              <div class="projectMeta">
+                <span class="projectCategory">{{ project.category }}</span>
+              </div>
             </div>
           </div>
         </div>
@@ -93,55 +139,6 @@
     </div>
   </footer>
 
-  <!-- Vue.js -->
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.min.js"></script>
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Portfolio Gallery Script -->
-  <script>
-    new Vue({
-      el: '#projectGalleryApp',
-      data: {
-        projects: [],
-        filteredProjects: [],
-        activeFilter: 'all',
-        loading: true
-      },
-      mounted() {
-        this.fetchProjects();
-      },
-      methods: {
-        fetchProjects() {
-          setTimeout(() => {
-            this.projects = [
-              { id: 1, title: 'Magic 8 Ball Website', image: 'img/8ball.png', category: 'appDevelopment', link: 'project-detail.html?id=1', tags: ['JavaScript', 'Fun'] },
-              { id: 2, title: 'Rock Paper Scissors Website', image: 'img/rps.png', category: 'appDevelopment', link: 'project-detail.html?id=2', tags: ['Game', 'JavaScript'] },
-              { id: 3, title: 'Trunk or Treat Website', image: 'img/trunk.png', category: 'webDesign', link: 'project-detail.html?id=3', tags: ['HTML', 'CSS'] },
-              { id: 4, title: 'Schedule Website', image: 'img/sched.png', category: 'appDevelopment', link: 'https://github.com/JakeCherichello/classes', tags: ['Vue', 'Productivity'] },
-              { id: 5, title: 'Little Bird Toy Company', image: 'img/lbtc.png', category: 'webDesign', link: 'https://matthewpass24.github.io/Final-Website/', tags: ['E-commerce', 'Design'] },
-              { id: 6, title: 'Santa Animation', image: 'img/santa.png', category: 'animation', link: 'https://jakecherichello.github.io/Christmas/', tags: ['Animation', 'Holiday'] },
-              { id: 7, title: 'Tip Calculator', image: 'img/tip.png', category: 'appDevelopment', link: 'https://github.com/JakeCherichello/tip-calculator', tags: ['Calculator', 'Vue'] },
-              { id: 8, title: 'Spider Animation', image: 'img/spider.png', category: 'animation', link: 'https://github.com/JakeCherichello/Animation2.html?id=8', tags: ['Animation', 'CSS'] },
-              { id: 9, title: 'Lottery App', image: 'img/lottery.png', category: 'appDevelopment', link: 'https://jakecherichello.github.io/Lottery/', tags: ['Random', 'JavaScript'] }
-            ];
-            this.filteredProjects = [...this.projects];
-            this.loading = false;
-          }, 800);
-        },
-        filterProjects(category) {
-          this.activeFilter = category;
-          this.loading = true;
-          setTimeout(() => {
-            if (category === 'all') {
-              this.filteredProjects = [...this.projects];
-            } else {
-              this.filteredProjects = this.projects.filter(p => p.category === category);
-            }
-            this.loading = false;
-          }, 400);
-        }
-      }
-    });
-  </script>
+ 
 </body>
 </html>
