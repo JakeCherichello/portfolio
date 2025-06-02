@@ -1,7 +1,3 @@
-/* =======================
-   ENHANCED PORTFOLIO STYLES
-   ======================= */
-
    :root {
     --primaryGradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     --accentGradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
@@ -33,7 +29,7 @@
   body {
     font-family: 'Inter', sans-serif;
     color: var(--textSecondary);
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background: linear-gradient(135deg, #c6d3e7 0%, #c3cfe2 100%);
     overflow-x: hidden;
     line-height: 1.6;
   }
@@ -45,9 +41,9 @@
     line-height: 1.2;
   }
   
-  /* =======================
-     ANIMATED BACKGROUND
-     ======================= */
+  
+     /* ANIMATED BACKGROUND */
+
   .floatingShapes {
     position: fixed;
     top: 0;
@@ -111,9 +107,6 @@
     }
   }
   
-  /* =======================
-     HERO SECTION
-     ======================= */
   .heroSection {
     height: 100vh;
     min-height: 700px;
@@ -205,9 +198,6 @@
     animation: fadeInUp 0.8s ease-out 0.6s both;
   }
   
-  /* =======================
-     FLOATING ELEMENTS
-     ======================= */
   .floatingElements {
     position: absolute;
     top: 0;
@@ -244,9 +234,7 @@
     50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
   }
   
-  /* =======================
-     ENHANCED BUTTONS
-     ======================= */
+
   .btnPrimaryGradient {
     background: var(--primaryGradient);
     border: none;
@@ -306,9 +294,7 @@
     color: var(--textWhite);
   }
   
-  /* =======================
-     PORTFOLIO SECTION
-     ======================= */
+
   .portfolioSection {
     position: relative;
     background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
@@ -349,9 +335,7 @@
     margin: 0 auto;
   }
   
-  /* =======================
-     GALLERY FILTERS
-     ======================= */
+
   .galleryFilters {
     display: flex;
     justify-content: center;
@@ -398,9 +382,7 @@
     box-shadow: var(--shadowSoft);
   }
   
-  /* =======================
-     LOADING SPINNER
-     ======================= */
+  
   .loadingSpinner {
     padding: 3rem 0;
   }
@@ -421,9 +403,6 @@
     100% { transform: rotate(360deg); }
   }
   
-  /* =======================
-     GALLERY CARDS
-     ======================= */
   .galleryCard {
     background: var(--glassBg);
     backdrop-filter: var(--glassBackdrop);
@@ -540,9 +519,7 @@
     font-weight: 500;
   }
   
-  /* =======================
-     ANIMATIONS
-     ======================= */
+
   @keyframes fadeInUp {
     from {
       opacity: 0;
@@ -554,9 +531,6 @@
     }
   }
   
-  /* =======================
-     RESPONSIVE DESIGN
-     ======================= */
   @media (max-width: 1200px) {
     .heroTitle {
       font-size: 4rem;
